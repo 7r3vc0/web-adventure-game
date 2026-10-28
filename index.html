@@ -35,7 +35,7 @@
                 <p>High agility, low defense. Excels at long range scanning.</p>
             </button>
         </div>
-        <form>
+        <form id="quest-form">
             <label for="level-name-input">Todays date</label>
             <input id="level-name-input" name="levelName" type="text">
             <h3>Name your hero</h3>
@@ -44,6 +44,13 @@
             <button type="submit">Save Name</button>
         </form>
         <p id="hero-name-preview">Current hero: [unnamed]</p>
+        <ul id="quest-list"></ul>
+        <form id="monster-form">
+            <label for="monster-name-input">Monster Name:</label>
+            <input type="text" id="monster-name-input" name="monsterName" placeholder="Enter monster name">
+            <button type="submit">Add Monster</button>
+        </form>
+        <ul id="monster-list"></ul>
         <ol>
             <li class="quest-step">Talk to janitor about lost items for clues</li>
             <li class="quest-step">check lost and found box</li>

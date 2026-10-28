@@ -77,4 +77,35 @@ rogerCard.addEventListener('click', function() {
   introParagraph.textContent = "Roger steps forward. Heavy footsteps echo down the hallway...";
 });
 
+const questForm = document.querySelector('#quest-form');
+const questlist = document.querySelector('#quest-list');
+
+questForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const dateInput = document.querySelector('#level-name-input');
+  const heroInput = document.querySelector('#hero-name-input');
+  const dateValue = dateInput.value;
+  const heroValue = heroInput.value;
+  console.log("Quest form submitted");
+  console.log("Date:", dateValue);
+  console.log("Hero Name:", heroValue);
+  const newQuestItem = document.createElement('li');
+  newQuestItem.textContent = `${dateValue} -  Hero: ${heroValue}`;
+  questlist.appendChild(newQuestItem);
+});
+
+const monsterForm = document.querySelector('#monster-form');
+const monsterList = document.querySelector('#monster-list');
+
+monsterForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const monsterInput = document.querySelector('#monster-name-input');
+  const monsterValue = monsterInput.value;
+  console.log("Monster form submitted");
+  console.log("Monster Name:", monsterValue);
+  const newMonsterItem = document.createElement('li');
+  newMonsterItem.textContent = monsterValue;
+  monsterList.appendChild(newMonsterItem);
+});
+
 // TODO: add sound-based monster detection logic
