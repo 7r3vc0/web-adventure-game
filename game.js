@@ -76,3 +76,5 @@ const rogerCard = characters[0];
 rogerCard.addEventListener('click', function() {
   introParagraph.textContent = "Roger steps forward. Heavy footsteps echo down the hallway...";
 });
+
+// TODO: add sound-based monster detection logic
