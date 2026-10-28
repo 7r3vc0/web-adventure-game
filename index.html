@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lost and Found </title>
+        <link rel="stylesheet" href="style.css">
+        <script src="game.js" defer></script>
+    </head>
+    <body>
+        <nav class="game-menu">
+            <a href="#">Home</a>
+            <a href="#">Inventory</a>
+            <a href="#">Map</a>
+            <a href="#">Settings</a>
+        </nav>
+        <div class="main-panel">
+            <h1 id="game-title">Lost and Found</h1>
+            <p class="fade-text">Welcome to the Lost and Found!</p>
+            <p>Search high and low to find all the lost items in this world run by monsters who hunt through sound!</p>
+            <ul>
+                <li>Tylers left shoe</li>
+                <li>Lizzies pet Iguana</li>
+                <li>Stevens lost backpack</li>
+            </ul>
+            <img height="300" width="300" src="./images/Dark school.png" alt="dark school hallway with flickering lights"/>
+        </div>
+        <button class="start-button"><span>Start Game</span></button>
+        <h2>Choose your character</h2>
+        <div class="character-row">
+            <button class="character-card" id="roger-card">
+                <h2>Roger</h2>
+                <p>High strength, high defense, slow. Excels at breaking boxes.</p>
+            </button>
+            <button class="character-card" id="stacy-card">
+                <h2>Stacy</h2>
+                <p>High agility, low defense. Excels at long range scanning.</p>
+            </button>
+        </div>
+        <form>
+            <label for="level-name-input">Todays date</label>
+            <input id="level-name-input" name="levelName" type="text">
+            <h3>Name your hero</h3>
+            <label for="hero-name-input">Hero Name:</label>
+            <input type="text" id="hero-name-input" name="heroName" placeholder="Enter hero name">
+            <button type="submit">Save Name</button>
+        </form>
+        <p id="hero-name-preview">Current hero: [unnamed]</p>
+        <ol>
+            <li class="quest-step">Talk to janitor about lost items for clues</li>
+            <li class="quest-step">check lost and found box</li>
+            <li class="quest-step">talk to other students about their lost items</li>
+        </ol>
+    </body>
+</html>

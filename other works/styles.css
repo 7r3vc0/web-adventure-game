@@ -1,0 +1,16 @@
+/* styles.css */
+.player-card {
+  background-color: limegreen;
+  color: white;
+}
+/* styles.css */
+.attack-button {
+  background-color: blue;
+  color: white;
+}
+
+/* Later in the file */
+.danger-button {
+  background-color: red;
+  color: yellow;
+}
