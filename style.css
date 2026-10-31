@@ -121,3 +121,19 @@ h2{
 .fade-out{
     opacity: 0;
 }
+
+#quest-list li {
+  cursor: pointer;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    width: fit-content;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: fit-content;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(255, 9, 9, 0.94));
+}
+
+.done {
+    text-decoration: line-through;
+    cursor: pointer;
+}

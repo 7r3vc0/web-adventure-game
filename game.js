@@ -90,7 +90,21 @@ questForm.addEventListener('submit', function(event) {
   console.log("Date:", dateValue);
   console.log("Hero Name:", heroValue);
   const newQuestItem = document.createElement('li');
-  newQuestItem.textContent = `${dateValue} -  Hero: ${heroValue}`;
+  const questText = document.createElement('span');
+  questText.textContent = `${dateValue} -  Hero: ${heroValue}`;
+  newQuestItem.appendChild(questText);
+
+  newQuestItem.addEventListener('click', function() {
+    questText.classList.toggle('done');
+  });
+  
+  const abandonButton = document.createElement('button');
+  abandonButton.textContent = 'Abandon Quest';
+  abandonButton.addEventListener('click', function(event) {
+    event.stopPropagation();
+    newQuestItem.remove();
+  });
+  newQuestItem.appendChild(abandonButton);
   questlist.appendChild(newQuestItem);
 });
 
