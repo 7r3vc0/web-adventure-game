@@ -8,19 +8,22 @@ const startButton = document.querySelector('.start-button');
 console.log(startButton);
 const characters = document.querySelectorAll('.character-card');
 console.log(characters);
-const heroNameInput = document.getElementById("hero-name-input");
-const heroNamePreview = document.getElementById("hero-name-preview");
-heroNameInput.addEventListener("input", function() {
-  const name = heroNameInput.value.trim();
-  heroNamePreview.textContent = name
-  ? `Hero Name: ${name}` 
-  : "Hero Name: [unnamed]";
+const questNameInput = document.getElementById("quest-name-input");
+const questNamePreview = document.getElementById("quest-name-preview");
+questNameInput.addEventListener("input", function() {
+  const name = questNameInput.value.trim();
+  questNamePreview.textContent = name
+  ? `Quest Name: ${name}` 
+  : "Quest Name: [unnamed]";
 });
-const firstChracter = characters[0];
+const questSelect = document.querySelector("#quest-select");
+const setActiveQuestButton = document.querySelector("#set-active-quest");
+const activeQuestDisplay = document.querySelector("#active-quest-display");
+const firstCharacter = characters[0];
 const secondCharacter = characters[1];
-firstChracter.addEventListener('click', selectRoger);
+firstCharacter.addEventListener('click', selectRoger);
 secondCharacter.addEventListener('click', selectStacy);
-console.log(firstChracter);
+console.log(firstCharacter);
 console.log(secondCharacter);
 const lostItems = document.querySelectorAll('.quest-step');
 console.log(lostItems[0]);
@@ -28,7 +31,7 @@ title.textContent = "Lost and Found: Monster Echoes";
 
 const introParagraph = document.querySelector('.main-panel p');
 introParagraph.textContent = "You wake up in a school where every sound attracts hungry monster...";
-firstChracter.textContent = 'Roger: [CLASSIFIED] -All data corrupted...';
+firstCharacter.textContent = 'Roger: [CLASSIFIED] -All data corrupted...';
 
 secondCharacter.innerHTML = `
   <h2>Stacy</h2>
@@ -60,14 +63,14 @@ function startGame() {
 }
 
 function selectRoger() {
-  firstChracter.classList.add('selected');
+  firstCharacter.classList.add('selected');
   secondCharacter.classList.remove('selected');
   introParagraph.textContent = "Roger steps forward. Heavy footsteps echo down the hallway...";
 }
 
 function selectStacy() {
   secondCharacter.classList.add('selected');
-  firstChracter.classList.remove('selected');
+  firstCharacter.classList.remove('selected');
   introParagraph.textContent = "Stacy scans the darkness, her ears twitching for the faintest echo of lost items...";
 }  
 
@@ -78,34 +81,47 @@ rogerCard.addEventListener('click', function() {
 });
 
 const questForm = document.querySelector('#quest-form');
-const questlist = document.querySelector('#quest-list');
+const questList = document.querySelector('#quest-list');
 
 questForm.addEventListener('submit', function(event) {
   event.preventDefault();
-  const dateInput = document.querySelector('#level-name-input');
-  const heroInput = document.querySelector('#hero-name-input');
+  const dateInput = document.querySelector('#todays-date-input');
+  const questInput = document.querySelector('#quest-name-input');
   const dateValue = dateInput.value;
-  const heroValue = heroInput.value;
+  const questValue = questInput.value;
   console.log("Quest form submitted");
   console.log("Date:", dateValue);
-  console.log("Hero Name:", heroValue);
+  console.log("Quest Name:", questValue);
   const newQuestItem = document.createElement('li');
   const questText = document.createElement('span');
-  questText.textContent = `${dateValue} -  Hero: ${heroValue}`;
+  questText.textContent = `${dateValue} -  Quest: ${questValue}`;
+  const option = document.createElement('option');
+  option.value = questValue;
+  option.textContent = questText.textContent;
+  questSelect.appendChild(option);
   newQuestItem.appendChild(questText);
 
   newQuestItem.addEventListener('click', function() {
     questText.classList.toggle('done');
   });
-  
+  questList.appendChild(newQuestItem);
   const abandonButton = document.createElement('button');
   abandonButton.textContent = 'Abandon Quest';
   abandonButton.addEventListener('click', function(event) {
     event.stopPropagation();
     newQuestItem.remove();
+    option.remove();
   });
   newQuestItem.appendChild(abandonButton);
-  questlist.appendChild(newQuestItem);
+});
+
+setActiveQuestButton.addEventListener('click', function() {
+  const selectedOption = questSelect.value;
+  if (!selectedOption) {
+    activeQuestDisplay.textContent = "Active Quest: [none selected]";
+    return;
+  }
+  activeQuestDisplay.textContent = `Active Quest: ${selectedOption}`;
 });
 
 const monsterForm = document.querySelector('#monster-form');

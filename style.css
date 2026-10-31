@@ -131,9 +131,24 @@ h2{
     justify-content: flex-start;
     height: fit-content;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(255, 9, 9, 0.94));
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 5px 25px 5px 25px;
 }
 
 .done {
     text-decoration: line-through;
-    cursor: pointer;
+    cursor: not-allowed;
 }
+
+#active-quest-display {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: #113177c5;
+  color: #cb0000; /* golden highlight */
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  background: radial-gradient(circle, rgb(34, 1, 78) 0%, rgba(125, 5, 210, 0.489) 75%);
+}   

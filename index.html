@@ -35,15 +35,18 @@
                 <p>High agility, low defense. Excels at long range scanning.</p>
             </button>
         </div>
+        <select id="quest-select"></select>
+        <button id="set-active-quest">Active Quest</button>
+        <p id="active-quest-display">Active Quest: none</p>
         <form id="quest-form">
-            <label for="level-name-input">Todays date</label>
-            <input id="level-name-input" name="levelName" type="text">
-            <h3>Name your hero</h3>
-            <label for="hero-name-input">Hero Name:</label>
-            <input type="text" id="hero-name-input" name="heroName" placeholder="Enter hero name">
-            <button type="submit">Save Name</button>
+            <label for="todays-date-input" type="date">Todays date</label>
+            <input id="todays-date-input" name="todaysDate" type="date">
+            <h3>Name of quest</h3>
+            <label for="quest-name-input">Quest Name:</label>
+            <input type="text" id="quest-name-input" name="questName" placeholder="Enter quest name">
+            <button type="submit">Add Quest</button>
         </form>
-        <p id="hero-name-preview">Current hero: [unnamed]</p>
+        <p id="quest-name-preview">Current quest: [unnamed]</p>
         <ul id="quest-list"></ul>
         <form id="monster-form">
             <label for="monster-name-input">Monster Name:</label>
