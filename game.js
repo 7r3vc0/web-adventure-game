@@ -1,43 +1,36 @@
-alert("You enter the Lost and Found. Something is watching you...");
-alert("A whisper: 'Some things are better left lost...'");
+const voidOverlay = document.querySelector('.void-overlay');
+const voidLine1 = document.querySelector('.void-line-1');
+const voidLine2 = document.querySelector('.void-line-2');
+const voidLine3 = document.querySelector('.void-line-3');
+const pageContent = document.querySelector('.page-content');
 const title = document.getElementById('game-title');
-console.log(title);
 const mainPanel = document.querySelector('.main-panel');
-console.log(mainPanel);
 const startButton = document.querySelector('.start-button');
-console.log(startButton);
 const characters = document.querySelectorAll('.character-card');
-console.log(characters);
 const questNameInput = document.getElementById("quest-name-input");
 const questNamePreview = document.getElementById("quest-name-preview");
+const questSelect = document.querySelector("#quest-select");
+const setActiveQuestButton = document.querySelector("#set-active-quest");
+const activeQuestDisplay = document.querySelector("#active-quest-display");
+const firstCharacter = characters[0];
+const secondCharacter = characters[1];
+const lostItems = document.querySelectorAll('.quest-step');
+const introText = document.querySelector('.intro-text');
+const introSubtext = document.querySelector('.intro-subtext');
+const characterRow = document.querySelector('.character-row');
+const storyImage = document.querySelector('.story-image');
+const narratorText = document.querySelector('.fade-text');
+title.textContent = "Lost and Found: Monster Echoes";
 questNameInput.addEventListener("input", function() {
   const name = questNameInput.value.trim();
   questNamePreview.textContent = name
   ? `Quest Name: ${name}` 
   : "Quest Name: [unnamed]";
 });
-const questSelect = document.querySelector("#quest-select");
-const setActiveQuestButton = document.querySelector("#set-active-quest");
-const activeQuestDisplay = document.querySelector("#active-quest-display");
-const firstCharacter = characters[0];
-const secondCharacter = characters[1];
-firstCharacter.addEventListener('click', selectRoger);
-secondCharacter.addEventListener('click', selectStacy);
-console.log(firstCharacter);
-console.log(secondCharacter);
-const lostItems = document.querySelectorAll('.quest-step');
-console.log(lostItems[0]);
-title.textContent = "Lost and Found: Monster Echoes";
 
 const introParagraph = document.querySelector('.main-panel p');
 introParagraph.textContent = "You wake up in a school where every sound attracts hungry monster...";
-firstCharacter.textContent = 'Roger: [CLASSIFIED] -All data corrupted...';
 
-secondCharacter.innerHTML = `
-  <h2>Stacy</h2>
-  <p><strong>Role:</strong> Echo Tracker</p>
-  <p><em>Ability:</em> Marks nearby lost items when you stay silent.</p>
-`;
 const moonImage = document.querySelector('.main-panel img');
 moonImage.src = './images/Dark school.png';
 moonImage.alt = 'dark school hallway with flickering lights';
@@ -54,31 +47,85 @@ startButton.style.borderRadius = '12px';
 
 startButton.addEventListener('click', startGame);
 
-function startGame() {
-  introParagraph.classList.add('fade-out');
+window.addEventListener('load', () => {
   setTimeout(() => {
-    introParagraph.textContent = "You take a deep breath and step into the echoing halls....";
-    introParagraph.classList.remove('fade-out');
+    voidLine1.classList.add('show');
+  }, 600);
+  
+  setTimeout(() => {
+    voidLine2.classList.add('show');
+  }, 4200);
+  
+  setTimeout(() => {
+    voidLine3.classList.add('show');
+  }, 6500);
+  
+  setTimeout(() => {
+    voidOverlay.classList.add('hidden');
+    pageContent.classList.remove('faded');
+  }, 10000);
+});
+
+function startGame() {
+  // fade out intro text + button
+  introText.classList.add('fade-out');
+  introSubtext.classList.add('fade-out');
+  startButton.classList.add('fade-out');
+  
+  setTimeout(() => {
+    // hide them completely
+    introText.classList.add('hidden');
+    introSubtext.classList.add('hidden');
+    startButton.classList.add('hidden');
+    
+    // show character row
+    characterRow.classList.remove('hidden');
+    characterRow.classList.remove('fade-out'); // just in case
   }, 700);
 }
+
+function typeText(element, text, speed = 40) {
+  element.textContent = '';
+  let index = 0;
+  
+  const intervalId = setInterval(() => {
+    element.textContent += text[index];
+    index++;
+    
+    if (index >= text.length) {
+      clearInterval(intervalId);
+    }
+  }, speed);
+}
+
+firstCharacter.addEventListener('click', selectRoger);
+secondCharacter.addEventListener('click', selectStacy);
 
 function selectRoger() {
   firstCharacter.classList.add('selected');
   secondCharacter.classList.remove('selected');
-  introParagraph.textContent = "Roger steps forward. Heavy footsteps echo down the hallway...";
+
+  characterRow.classList.add('hidden');
+  storyImage.classList.remove('hidden');
+
+  narratorText.classList.remove('hidden');
+  narratorText.classList.remove('fade-out');
+  const text = "Roger steps forward. Heavy footsteps echo down the hallway...";
+  typeText(narratorText, text, 40);
 }
 
 function selectStacy() {
   secondCharacter.classList.add('selected');
   firstCharacter.classList.remove('selected');
-  introParagraph.textContent = "Stacy scans the darkness, her ears twitching for the faintest echo of lost items...";
+
+  characterRow.classList.add('hidden');
+  storyImage.classList.remove('hidden');
+
+  narratorText.classList.remove('hidden');
+  narratorText.classList.remove('fade-out');
+  const text = "Stacy scans the darkness, her ears twitching for the faintest echo of lost items...";
+  typeText(narratorText, text, 40);
 }  
-
-const rogerCard = characters[0];
-
-rogerCard.addEventListener('click', function() {
-  introParagraph.textContent = "Roger steps forward. Heavy footsteps echo down the hallway...";
-});
 
 const questForm = document.querySelector('#quest-form');
 const questList = document.querySelector('#quest-list');

@@ -1,47 +1,73 @@
+:root {
+  --bg-page: #111218;
+  --bg-panel: #22232c;
+  --accent: #ff4d4d;
+  --accent-soft: #ffe4a3;
+  --text-main: #f5f5f5;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: "Cormorant Garamond", sans-serif;
+}
+
 html {
-    background-color: #444;
-    color: white;
+    background-color: var(--bg-page);
+    color: var(--text-main);
     font-family: Arial, sans-serif;
 }
 
 h1 {
     font-size: 52px;
-    background: linear-gradient(to right, #000, #4b0082);
-    color: #ffe4a3;
-    text-shadow: 0 0 8px #ff0000;
+    background: linear-gradient(to right, var(--bg-page), #4b0082);
+    color: var(--accent-soft);
+    text-shadow: 0 0 8px var(--accent);
     text-align: center;
     padding: 20px 0;
     margin: 20px auto;
     max-width: 650px;
-    border: 3px solid #ff0000;
+    border: 3px solid var(--accent);
+    font-family: "Cormorant Garamond", sans-serif;
+    font-weight: 700;
 }
 
 p {
     font-size: 18px;
-    color: white;
-    background-color: #333;
+    color: var(--text-main);
+    background-color: var(--bg-panel);
 }
 
 h2{
     font-size: 32px;
-    color: white;
-    background-color: rgb(6, 98, 72);
+    color: var(--text-main);
+    background-color: var(--bg-panel);
     text-align: center;
+    font-family: "Cormorant Garamond", sans-serif;
+    font-weight: 700;
 }
 
 .start-button{
    padding: 12px 28px;
-    border: 2px solid #ff4d4d;
+    border: 2px solid var(--accent);
     margin: 24px auto;
     display: block;
     background-color: #111;
-    color: #ffe4a3;
+    color: var(--accent-soft);
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 0 20px #ff4d4d;
+    box-shadow: 0 0 20px var(--accent);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
 
+.start-button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 26px rgba(255, 77, 77, 0.9);
+    background-color: #181818;
 }
 
 .start-button a {
@@ -57,19 +83,19 @@ h2{
     margin: 0 0 16px 20px;
 }
 
-.main-panel img{
+.main-panel img.story-image{
     display: block;
     margin: 0 auto;
     margin-top: 8px;
-    border: 3px solid #000;
+    border: 3px solid var(--bg-page);
 }
 
 .main-panel {
   max-width: 700px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #333;
-  border: 3px solid #000;
+  background-color: var(--bg-panel);
+  border: 3px solid var(--accent);
   border-radius: 8px;
 }
 
@@ -81,25 +107,37 @@ h2{
 }
 
 .character-card {
-  background-color: rgba(106, 74, 13, 0.848);   /* dark card background */
-  color: rgb(60, 9, 229);
+    background-color: var(--bg-panel);   /* dark card background */
+    color: var(--text-main);
   padding: 16px;
   margin: 20px;               /* space inside around text */
-  border: 3px solid #090600;   /* golden frame */
+  border: 3px solid var(--bg-page);   /* golden frame */
   max-width: 260px;        /* space inside between text and frame */
-  text-align: center;           /* space outside between this card and others */
-  text-decoration: none;        /* no underline on text */
+  text-align: center;           /* space outside between this card and others */        /* no underline on text */
   cursor: pointer;              /* cursor changes to pointer on hover */
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 }
 
+.character-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 18px rgba(255, 77, 77, 0.6);
+    background-color: rgba(25, 15,55, 0.95);
+}
 .character-card.selected {
-  outline: 3px solid lime;
-  box-shadow: 0 0px 20px lime;  /* subtle shadow for depth */  
-  transform: scale(1.08);               /* initial scale */
+    outline: none;
+    border-color: lime;
+    box-shadow: 0 0 24px lime;
+    transform: scale(1.08);
+    animation: strobe-pulse 2.2s ease-in-out infinite;
 }
 
+@keyframes strobe-pulse {
+    0% { box-shadow: 0 0 8px lime;}
+    50% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.9);}
+    100% { box-shadow: 0 0 8px lime;}
+}
 .game-menu {
-  background-color: #111;
+  background-color: var(--bg-page);
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -108,14 +146,21 @@ h2{
 }
 
 .game-menu a {
-  color: #fff;
-  text-decoration: none;
-  font-family: sans-serif;
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: sans-serif;
 }
 
 .fade-text {
     transition: opacity 0.7s ease;
     opacity: 1;
+}
+
+.fade-text,
+.intro-subtext,
+.start-button,
+.character-row {
+    transition: opacity 0.7s ease;
 }
 
 .fade-out{
@@ -145,10 +190,83 @@ h2{
   margin-top: 12px;
   padding: 8px 12px;
   border-radius: 6px;
-  background-color: #113177c5;
-  color: #cb0000; /* golden highlight */
+  background-color: var(--bg-panel);
+  color: var(--accent); /* golden highlight */
   font-weight: bold;
   width: fit-content;
   height: fit-content;
-  background: radial-gradient(circle, rgb(34, 1, 78) 0%, rgba(125, 5, 210, 0.489) 75%);
-}   
+  background: radial-gradient(circle, var(--bg-page) 0%, var(--accent-soft) 75%);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.void-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #000;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.3rem;
+    text-align: center;
+    z-index: 999;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.void-line {
+    max-width: 700px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    /* gold gradient text */
+    background: linear-gradient(90deg, #c0c0c0, #ffd700, #ffea8a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+     /* outline + glow */
+    text-shadow:
+    0 0 6px rgba(255, 215, 0, 0.9),
+    0 0 14px rgba(255, 215, 0, 0.6),
+    0 0 2px rgba(131, 121, 121, 0.852);
+
+    opacity: 0;
+    transform: translateY(8px);
+    /* start fully hidden with a "right-to-left" mask */
+    clip-path: inset(0 100% 0 0);
+    transition:
+    opacity 1.2s ease,
+    transform 1.2s ease,
+    clip-path 1.4s ease;
+}
+
+.void-line.show {
+    opacity: 1;
+    transform: translateY(0);
+     /* reveal from right (100%) to left (0%) */
+    clip-path: inset(0 0 0 0);
+}
+
+.void-overlay.hidden {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.narrator-text {
+    margin-top: 16px;
+    font-size: 1.1rem;
+}
+
+.page-content {
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.page-content.faded {
+    opacity: 0;
+}

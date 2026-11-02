@@ -2,65 +2,75 @@
 <html>
     <head>
         <title>Lost and Found </title>
-        <link rel="stylesheet" href="style.css">
         <script src="game.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <nav class="game-menu">
-            <a href="#">Home</a>
-            <a href="#">Inventory</a>
-            <a href="#">Map</a>
-            <a href="#">Settings</a>
-        </nav>
-        <div class="main-panel">
-            <h1 id="game-title">Lost and Found</h1>
-            <p class="fade-text">Welcome to the Lost and Found!</p>
-            <p>Search high and low to find all the lost items in this world run by monsters who hunt through sound!</p>
+        <div class="void-overlay">
+            <p class="void-line void-line-1">You enter the spave inbetween, The Lost and Found. You weren't alone though... something is watching you...</p>
+            <p class="void-line void-line-2">A whisper as if carried on a breeze of staleness...</p>
+            <p class="void-line void-line-3">"Some things are better left lost..."</p>
+        </div>
+        <div class="page-content faded">
+            <nav class="game-menu">
+                <a href="#">Home</a>
+                <a href="#">Inventory</a>
+                <a href="#">Map</a>
+                <a href="#">Settings</a>
+            </nav>
+            <div class="main-panel">
+                <h1 id="game-title">Lost and Found</h1>
+                <p class="fade-text intro-text narrator-text">Welcome to the Lost and Found!</p>
+                <p class="intro-subtext">Search high and low to find all the lost items in this world run by monsters who hunt through sound!</p>
+                <button class="start-button"><span>Start Game</span></button>
+                <div class="character-row hidden">
+                    <button class="character-card selected" id="roger-card">
+                        <h2>Roger</h2>
+                        <p>High strength, high defense, slow. Excels at breaking boxes.</p>
+                    </button>
+                    <button class="character-card selected" id="stacy-card">
+                        <h2>Stacy</h2>
+                        <p>High agility, low defense. Excels at long range scanning.</p>
+                    </button>
+                </div>
+                <img class="story-image hidden" height="300" width="300" src="./images/Dark school.png" alt="dark school hallway with flickering lights"/>
+            </div>
             <ul>
                 <li>Tylers left shoe</li>
                 <li>Lizzies pet Iguana</li>
                 <li>Stevens lost backpack</li>
             </ul>
-            <img height="300" width="300" src="./images/Dark school.png" alt="dark school hallway with flickering lights"/>
+            <h2>Choose your character</h2>
+            <select id="quest-select"></select>
+            <button id="set-active-quest">Active Quest</button>
+            <p id="active-quest-display">Active Quest: none</p>
+            <form id="quest-form">
+                <label for="todays-date-input" type="date">Todays date</label>
+                <input id="todays-date-input" name="todaysDate" type="date">
+                <h3>Name of quest</h3>
+                <label for="quest-name-input">Quest Name:</label>
+                <input type="text" id="quest-name-input" name="questName" placeholder="Enter quest name">
+                <button type="submit">Add Quest</button>
+            </form>
+            <p id="quest-name-preview">Current quest: [unnamed]</p>
+            <ul id="quest-list"></ul>
+            <form id="monster-form">
+                <label for="monster-name-input">Monster Name:</label>
+                <input type="text" id="monster-name-input" name="monsterName" placeholder="Enter monster name">
+                <button type="submit">Add Monster</button>
+            </form>
+            <ul id="monster-list"></ul>
+            <ol>
+                <li class="quest-step">Talk to janitor about lost items for clues</li>
+                <li class="quest-step">check lost and found box</li>
+                <li class="quest-step">talk to other students about their lost items</li>
+            </ol>
+            <footer>
+                <p>beta v1.0</p>
+            </footer>
         </div>
-        <button class="start-button"><span>Start Game</span></button>
-        <h2>Choose your character</h2>
-        <div class="character-row">
-            <button class="character-card" id="roger-card">
-                <h2>Roger</h2>
-                <p>High strength, high defense, slow. Excels at breaking boxes.</p>
-            </button>
-            <button class="character-card" id="stacy-card">
-                <h2>Stacy</h2>
-                <p>High agility, low defense. Excels at long range scanning.</p>
-            </button>
-        </div>
-        <select id="quest-select"></select>
-        <button id="set-active-quest">Active Quest</button>
-        <p id="active-quest-display">Active Quest: none</p>
-        <form id="quest-form">
-            <label for="todays-date-input" type="date">Todays date</label>
-            <input id="todays-date-input" name="todaysDate" type="date">
-            <h3>Name of quest</h3>
-            <label for="quest-name-input">Quest Name:</label>
-            <input type="text" id="quest-name-input" name="questName" placeholder="Enter quest name">
-            <button type="submit">Add Quest</button>
-        </form>
-        <p id="quest-name-preview">Current quest: [unnamed]</p>
-        <ul id="quest-list"></ul>
-        <form id="monster-form">
-            <label for="monster-name-input">Monster Name:</label>
-            <input type="text" id="monster-name-input" name="monsterName" placeholder="Enter monster name">
-            <button type="submit">Add Monster</button>
-        </form>
-        <ul id="monster-list"></ul>
-        <ol>
-            <li class="quest-step">Talk to janitor about lost items for clues</li>
-            <li class="quest-step">check lost and found box</li>
-            <li class="quest-step">talk to other students about their lost items</li>
-        </ol>
-    </body>
-    <footer>
-        <p>beta v1.0</p>
-    </footer>
+        </body>
 </html>
