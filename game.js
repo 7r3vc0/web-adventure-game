@@ -185,4 +185,16 @@ monsterForm.addEventListener('submit', function(event) {
   monsterList.appendChild(newMonsterItem);
 });
 
+function d20() {
+  const roll = Math.floor(Math.random() * 20) + 1;
+  console.log(roll);
+  return roll;
+}
+
+d20();
+d20();
+d20();
+d20();
+d20();
+d20();
 // TODO: add sound-based monster detection logic
