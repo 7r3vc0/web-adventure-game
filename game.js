@@ -191,10 +191,20 @@ function d20() {
   return roll;
 }
 
-d20();
-d20();
-d20();
-d20();
-d20();
-d20();
-// TODO: add sound-based monster detection logic
+function evaluateRoll() {
+  const roll = d20();
+  let result = '';
+
+  if (roll === 1) {
+    result = 'Critical Failure';
+  } else if (roll >=2 && roll <= 9) {
+    result = 'Failure';
+  } else if (roll >= 10 && roll <= 19) {
+    result = 'Success';
+  } else if (roll === 20) {
+    result = 'Critical Success';
+  }
+  console.log(result);
+  return result;
+}
+
