@@ -20,6 +20,12 @@ const introSubtext = document.querySelector('.intro-subtext');
 const characterRow = document.querySelector('.character-row');
 const storyImage = document.querySelector('.story-image');
 const narratorText = document.querySelector('.fade-text');
+const continueButton = document.querySelector('.continue-button');
+const choiceContainer = document.querySelector('.choice-container');
+const choiceButtons = document.querySelectorAll('.choice-button');
+const rollResult = document.querySelector('.roll-result');
+const rollText = document.querySelector('.roll-text');
+const rollMessage = document.querySelector('.roll-message');
 title.textContent = "Lost and Found: Monster Echoes";
 questNameInput.addEventListener("input", function() {
   const name = questNameInput.value.trim();
@@ -112,6 +118,8 @@ function selectRoger() {
   narratorText.classList.remove('fade-out');
   const text = "Roger steps forward. Heavy footsteps echo down the hallway...";
   typeText(narratorText, text, 40);
+
+  continueButton.classList.remove('hidden');
 }
 
 function selectStacy() {
@@ -125,7 +133,28 @@ function selectStacy() {
   narratorText.classList.remove('fade-out');
   const text = "Stacy scans the darkness, her ears twitching for the faintest echo of lost items...";
   typeText(narratorText, text, 40);
-}  
+
+  continueButton.classList.remove('hidden');
+} 
+
+continueButton.addEventListener('click', () => {
+  continueButton.classList.add('hidden');
+  choiceContainer.classList.remove('hidden');
+  rollResult.classList.add('hidden');
+  rollText.textContent = '';
+  rollMessage.textContent = '';
+});
+
+choiceButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const choice = button.dataset.choice;
+    const outcome = evaluateRoll();
+
+    rollText.textContent = `You rolled a ${outcome.roll}:${outcome.result}`;
+    rollMessage.textContent = outcome.message;
+    rollResult.classList.remove('hidden');
+  });   
+});
 
 const questForm = document.querySelector('#quest-form');
 const questList = document.querySelector('#quest-list');
